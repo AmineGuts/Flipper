@@ -152,6 +152,7 @@ class Object2D:
     def move(self, moveDirection, value):
         for i in range( len(self._position)):
             self._position[i][moveDirection[0]] -= moveDirection[1] * value
+        return self
                 
     def moveToPosition(self, pos):
         xs = []
@@ -166,6 +167,7 @@ class Object2D:
         for i in range(len(self._position)):
             for j in range(2):
                 self._position[i][j] += deltas[j]
+        return self
         
     def scale(self, factor):            
         minX, minY = self.getPosition()[0]
@@ -986,7 +988,7 @@ class Game():
         
     def addPoints(self, points):
         self.points += points
-        print("New points:", self.points)
+        #print("New points:", self.points)
 
     def end(self):
         self.running = False
@@ -1039,8 +1041,8 @@ class Game():
                     continue
                 if not obj.shallAccelerate():
                     val = 0.95 if sect[0][1] > pos[1] else 0.6
-                    if isinstance(obj, Paddle):
-                        print("Not shallAccelerate", val)
+                    #if isinstance(obj, Paddle):
+                    #    print("Not shallAccelerate", val)
                 elif isinstance(obj, Boundary):
                     val = 0.7
                 else:
@@ -1128,42 +1130,42 @@ game.addBall()
 game.frame.addBackgroundObject( BackgroundImage(game.frame, Game.getUrl("Background.png"), WIDTH / 2, HEIGHT / 2) )
 
 padCordLeftLeft = [
-    [ int(0.0508333333333 * float(WIDTH) ), int( 0.785625 * float(HEIGHT) )],
-    [ int(0.0630555555556 * float(WIDTH) ), int( 0.779375 * float(HEIGHT) )],
-    [ int(0.0697222222222 * float(WIDTH) ), int( 0.778125 * float(HEIGHT) )],
-    [ int(0.176388888889 * float(WIDTH) ), int( 0.8325 * float(HEIGHT) )],
-    [ int(0.181944444444 * float(WIDTH) ), int( 0.83625 * float(HEIGHT) )],
-    [ int(0.184166666667 * float(WIDTH) ), int( 0.840625 * float(HEIGHT) )],
-    [ int(0.175277777778 * float(WIDTH) ), int( 0.84 * float(HEIGHT) )],
-    [ int(0.169722222222 * float(WIDTH) ), int( 0.83875 * float(HEIGHT) )],
-    [ int(0.0430555555556 * float(WIDTH) ), int( 0.7975 * float(HEIGHT) )],
-    [ int(0.0430555555556 * float(WIDTH) ), int( 0.79375 * float(HEIGHT) )]
+    [ int(0.161111111111 * float(WIDTH) ), int( 0.80859375 * float(HEIGHT) )],
+    [ int(0.173611111111 * float(WIDTH) ), int( 0.80234375 * float(HEIGHT) )],
+    [ int(0.180555555556 * float(WIDTH) ), int( 0.8015625 * float(HEIGHT) )],
+    [ int(0.2875 * float(WIDTH) ), int( 0.85546875 * float(HEIGHT) )],
+    [ int(0.291666666667 * float(WIDTH) ), int( 0.859375 * float(HEIGHT) )],
+    [ int(0.294444444444 * float(WIDTH) ), int( 0.8640625 * float(HEIGHT) )],
+    [ int(0.286111111111 * float(WIDTH) ), int( 0.86328125 * float(HEIGHT) )],
+    [ int(0.280555555556 * float(WIDTH) ), int( 0.86171875 * float(HEIGHT) )],
+    [ int(0.154166666667 * float(WIDTH) ), int( 0.8203125 * float(HEIGHT) )],
+    [ int(0.154166666667 * float(WIDTH) ), int( 0.8171875 * float(HEIGHT) )]
 ]
 
 padCordLeftRight = [ 
-    [ int(0.244444444444 * float(WIDTH) ), int( 0.86375 * float(HEIGHT) )],
-    [ int(0.257777777778 * float(WIDTH) ), int( 0.8575 * float(HEIGHT) )],
-    [ int(0.263333333333 * float(WIDTH) ), int( 0.85625 * float(HEIGHT) )],
-    [ int(0.372222222222 * float(WIDTH) ), int( 0.910625 * float(HEIGHT) )],
-    [ int(0.375555555556 * float(WIDTH) ), int( 0.914375 * float(HEIGHT) )],
-    [ int(0.38 * float(WIDTH) ), int( 0.91875 * float(HEIGHT) )],
-    [ int(0.371111111111 * float(WIDTH) ), int( 0.918125 * float(HEIGHT) )],
-    [ int(0.363333333333 * float(WIDTH) ), int( 0.916875 * float(HEIGHT) )],
-    [ int(0.238888888889 * float(WIDTH) ), int( 0.875625 * float(HEIGHT) )],
-    [ int(0.238888888889 * float(WIDTH) ), int( 0.871875 * float(HEIGHT) )]
+    [ int(0.3125 * float(WIDTH) ), int( 0.87890625 * float(HEIGHT) )],
+    [ int(0.326388888889 * float(WIDTH) ), int( 0.87265625 * float(HEIGHT) )],
+    [ int(0.331944444444 * float(WIDTH) ), int( 0.871875 * float(HEIGHT) )],
+    [ int(0.440277777778 * float(WIDTH) ), int( 0.92578125 * float(HEIGHT) )],
+    [ int(0.444444444444 * float(WIDTH) ), int( 0.9296875 * float(HEIGHT) )],
+    [ int(0.448611111111 * float(WIDTH) ), int( 0.934375 * float(HEIGHT) )],
+    [ int(0.440277777778 * float(WIDTH) ), int( 0.93359375 * float(HEIGHT) )],
+    [ int(0.431944444444 * float(WIDTH) ), int( 0.93203125 * float(HEIGHT) )],
+    [ int(0.308333333333 * float(WIDTH) ), int( 0.890625 * float(HEIGHT) )],
+    [ int(0.308333333333 * float(WIDTH) ), int( 0.8875 * float(HEIGHT) )]
 ]
 
 padCordRight = [
-    [ int(0.718888888889 * float(WIDTH) ), int( 0.86375 * float(HEIGHT) )],
-    [ int(0.706666666667 * float(WIDTH) ), int( 0.8575 * float(HEIGHT) )],
-    [ int(0.7 * float(WIDTH) ), int( 0.85625 * float(HEIGHT) )],
-    [ int(0.591111111111 * float(WIDTH) ), int( 0.910625 * float(HEIGHT) )],
-    [ int(0.587777777778 * float(WIDTH) ), int( 0.914375 * float(HEIGHT) )],
-    [ int(0.583333333333 * float(WIDTH) ), int( 0.91875 * float(HEIGHT) )],
-    [ int(0.592222222222 * float(WIDTH) ), int( 0.918125 * float(HEIGHT) )],
-    [ int(0.6 * float(WIDTH) ), int( 0.916875 * float(HEIGHT) )],
-    [ int(0.724444444444 * float(WIDTH) ), int( 0.875625 * float(HEIGHT) )],
-    [ int(0.724444444444 * float(WIDTH) ), int( 0.871875 * float(HEIGHT) )]
+    [ int(0.704166666667 * float(WIDTH) ), int( 0.87890625 * float(HEIGHT) )],
+    [ int(0.691666666667 * float(WIDTH) ), int( 0.87265625 * float(HEIGHT) )],
+    [ int(0.684722222222 * float(WIDTH) ), int( 0.871875 * float(HEIGHT) )],
+    [ int(0.576388888889 * float(WIDTH) ), int( 0.92578125 * float(HEIGHT) )],
+    [ int(0.573611111111 * float(WIDTH) ), int( 0.9296875 * float(HEIGHT) )],
+    [ int(0.568055555556 * float(WIDTH) ), int( 0.934375 * float(HEIGHT) )],
+    [ int(0.577777777778 * float(WIDTH) ), int( 0.93359375 * float(HEIGHT) )],
+    [ int(0.586111111111 * float(WIDTH) ), int( 0.93203125 * float(HEIGHT) )],
+    [ int(0.709722222222 * float(WIDTH) ), int( 0.890625 * float(HEIGHT) )],
+    [ int(0.709722222222 * float(WIDTH) ), int( 0.8875 * float(HEIGHT) )]
 ]
 
 gameBoundaries = [
@@ -1222,6 +1224,20 @@ bouncerCoords = [
     [ int(0.694444444444 * float(WIDTH) ), int( 0.234375 * float(HEIGHT) )]
 ]
 
+drahtLeftCoords = [
+    [ int(0.0388888888889 * float(WIDTH) ), int( 0.8109375 * float(HEIGHT) )],
+    [ int(0.0611111111111 * float(WIDTH) ), int( 0.803125 * float(HEIGHT) )],
+    [ int(0.144444444444 * float(WIDTH) ), int( 0.88515625 * float(HEIGHT) )],
+    [ int(0.108333333333 * float(WIDTH) ), int( 0.890625 * float(HEIGHT) )]
+]
+
+drahtRightCoords = [
+    [ int(0.831944444444 * float(WIDTH) ), int( 0.821875 * float(HEIGHT) )],
+    [ int(0.848611111111 * float(WIDTH) ), int( 0.83671875 * float(HEIGHT) )],
+    [ int(0.713888888889 * float(WIDTH) ), int( 0.88359375 * float(HEIGHT) )],
+    [ int(0.695833333333 * float(WIDTH) ), int( 0.86796875 * float(HEIGHT) )]
+]
+
 for pos in bouncerCoords:
     bouncer = Bouncer(pos[0], pos[1], 50, Game.getUrl("Bouncer_0.png"), Game.getUrl("Bouncer_1.png"))
     game.frame.addObject(bouncer)
@@ -1231,9 +1247,22 @@ paddleLeftLeft  = Paddle(padCordLeftLeft , True,  fillColor = paddleColor)
 paddleLeftRight = Paddle(padCordLeftRight, True,  fillColor = paddleColor)
 paddleRight     = Paddle(padCordRight    , False, fillColor = paddleColor)
 
-#print(paddleLeftLeft.scale(0.8).getPosition())
-#print(paddleLeftRight.scale(0.8).getPosition())
-#print(paddleRight.scale(0.8).getPosition())
+SHOULD_MOVE_FOR_DEBUG = False
+
+if SHOULD_MOVE_FOR_DEBUG:
+    down = 20
+    paddleLeftLeft.move(Direction.DOWN, down)
+    paddleLeftRight.move(Direction.DOWN, down)
+    paddleRight.move(Direction.DOWN, down)
+
+    print(paddleLeftLeft   .move(Direction.RIGHT, 80).move(Direction.DOWN, 10).getPosition())
+    print(paddleLeftRight  .move(Direction.RIGHT, 50).getPosition())
+    print(paddleRight      .move(Direction.LEFT, 10).getPosition())
+
+
+
+
+
 
 paddles = [paddleLeftLeft, paddleLeftRight]
 game.frame.addObjects(paddles).addObject(paddleRight)
@@ -1257,13 +1286,16 @@ boundaries = [
     gameBoundaries,
     gameBoundariesLowerLeft,
     gameBoundariesLowerRight,
-    rollInBoundaries    
+    rollInBoundaries,
+    drahtRightCoords,
+    drahtLeftCoords   
 ]
 
 for boundary in boundaries:
     game.frame.addObject(Boundary(boundary))
 
 def togglePaddles(event):
+    print(event.pos)
     if event.button == 1:
         global paddles
         for pad in paddles:
